@@ -1,0 +1,12 @@
+{
+  "name": "arduinoserver",
+  "version": "0.0.2",
+  "description": "Uarm Robot arm controller",
+  "dependencies": {
+    "express": "",
+    "node": "",
+    "socket.io": "",
+    "serialport": "",
+    "node-localstorage": ""
+  }
+}

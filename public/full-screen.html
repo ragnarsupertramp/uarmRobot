@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>kaliberBot controll | Home</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <style type="text/css">
+    body{
+      overflow: hidden;
+    }
+    #clock{
+      margin: auto;
+      margin-top: -50px;
+      width: 100%;
+      text-align: center;
+      color: #222;
+      font-size: 500px;
+    }
+  </style>
+</head>
+<body>
+<div id="clock">
+  10:00
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/robotFunctions.js"></script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+    //launchIntoFullscreen(document.documentElement);
+    timepress();
+  });
+</script>
+</body>
+</html>
