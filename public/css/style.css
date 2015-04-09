@@ -1,7 +1,9 @@
+body{
+	overflow: hidden;
+}
 .processing{
 	display: none;
 }
-
 h1{
 	display: inline;
 }
