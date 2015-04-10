@@ -26,12 +26,10 @@ io.on('connection', function(socket){
 		saveToLocal("timerState", state);
 		console.log("bit");
 		setup();
-		reset_init();
 	});
 	//save countdowntime
 	socket.on('countDownTime', function(state){
 		saveToLocal("countDownTime", state);
-		console.log(state);
 	});
 	//save klok state
 	socket.on('clockState', function(state){
@@ -57,13 +55,11 @@ function currenttime(){
 
 //exe and looping time
 function setup(){
-	//TIMER PART
 	timerStateVar = localStorage.getItem('timerState');
+	console.log(timerStateVar);
 	if(timerStateVar == "true"){
 		var countDownLoopTimer = setInterval(function(){
 			//dataprinter aan roepen
-			writebackspace();
-			printerToSerial(clockCountdown());
 		}, 5000);
 		var checkLoopTimer = setInterval(function(){
 			//false betekend stoppen met/UIT geen LOOP
@@ -74,10 +70,9 @@ function setup(){
 	//stop de loops als de button naar false in gezet
 	if(timerStateVar == "false"){
 		clearInterval(countDownLoopTimer);
-		clearInterval(checkLoopTimer);
+		clearInterval(checkLoop);
 	}
-	//---------------------------------------------------------
-	//CLOCK PART
+
 	if(localStorage.getItem('clockState') == "true"){
 		var countDownLoopClock = setInterval(function(){
 			console.log("i'am a clock");
@@ -91,23 +86,32 @@ function setup(){
 		}, 250);
 	}
 }
+
+//reset en set localstorge
+var initDone = false;
+function reset_init(){
+	initDone = true;
+	localStorage.setItem("timerState", "");
+	localStorage.setItem("countDownTime", "");
+	localStorage.setItem("clockState", "");
+	localStorage.setItem("browserText", "");
+}
 //aftellen naar 0 voor countdowntimer
-var newTime = true;
+var newtime = true;
 var time = localStorage.getItem('countDownTime');
-var time = hmsToSecondsOnly(time);
 function clockCountdown(){
-	if(newTime == true){
-		//maken van een nieuwe tijd en opslaan
+	if(newtime == true){
+		//gen and save new time
 		if(time >= 5){
 			time = time -5;
 		}
 		var returntime = timeConverter(time)
 		localStorage.setItem("clockTimeSave" , returntime);
-		newTime = false;
+		newtime = false;
 		return returntime;
 	}
-	if(newTime == false){
-		//ouden tijd uit de save halen en deze terug geven
+	if(newtime == false){
+		//return old time
 		return localStorage.getItem("clockTimeSave");
 	}
 }	
@@ -118,7 +122,6 @@ function compere(){
 	var time1 = localStorage.getItem("clockTimeSave");
 	var time2 = localStorage.getItem("browserText");
 
-	// log de tijd ie er is binnen gekomen en uit zou moeten gaan
 	console.log(time1 + " | " + time2);
 
 	if(time1.length == time2.length){
@@ -126,16 +129,16 @@ function compere(){
 		if(time1 == time2){
 			console.log("same");
 			//gen and print new time
-			newTime = true;
+			newtime = true;
 			backspace = true;
 		}else if(time1 !== time2){
-			//nog een keer oude tijd printen en scherm leegmaken new time naar false
+			//nog een keer u
 			console.log("reloop");
-			newTime = false;
+			newtime = false;
 			backspace = true;
 		}
 	}else{
-		newTime = false;
+		newtime = false;
 	}
 }
 
@@ -143,7 +146,7 @@ function compere(){
 function printerToSerial(timePrinter){
 	//printing out sended array to the serial port
 	var printTime = timePrinter;
-	//console.log("printnewtime: "+printTime);
+	console.log("printnewtime: "+printTime);
 	//convert time to array for looping
 	var splitTime = printTime.split("");
 	//send loop to serial port
@@ -151,15 +154,6 @@ function printerToSerial(timePrinter){
 		//wirte to serialPort
 	  	//serialPort.write(splitTime[i]);
 	}	
-}
-
-//reset en set localstorge
-function reset_init(){
-	localStorage.setItem("timerState", "");
-	localStorage.setItem("countDownTime", "");
-	localStorage.setItem("clockState", "");
-	localStorage.setItem("browserText", "");
-	localStorage.setItem("clockTimeSave", "");
 }
 
 //stuur een backspace voor het weer leeg maken van het scherm
@@ -180,17 +174,6 @@ function timeConverter(sec) {
 	while (sec.length < 2) {sec = '0' + sec;}
 	hr = (hr)?':'+hr:'';
 	return hr + min + ':' + sec;
-}
-function hmsToSecondsOnly(str) {
-    var p = str.split(':'),
-        s = 0, m = 1;
-
-    while (p.length > 0) {
-        s += m * parseInt(p.pop(), 10);
-        m *= 60;
-    }
-
-    return s;
 }
 
 //save tool voor het opslaan van de socket data.
