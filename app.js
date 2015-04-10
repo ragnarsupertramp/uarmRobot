@@ -4,10 +4,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./scratch');
-// var SerialPort = require("serialport").SerialPort
-// var serialPort = new SerialPort("COM4", {
-//   baudrate: 9600
-// });
+var SerialPort = require("serialport").SerialPort
+var serialPort = new SerialPort("/dev/ttyUSB0", {
+  baudrate: 9600
+});
 
 app.use('/', express.static(__dirname + '/public'));
 
@@ -125,7 +125,7 @@ function printer(clocktimeprinter){
 		//send loop to serial port
 		for (i = 0; i < splittime.length; i++) {
 			//wirte to serialPort
-		  	//serialPort.write(splittime[i]);
+		  	serialPort.write(splittime[i]);
 		}			
 }
 function restloop(){
@@ -137,7 +137,7 @@ function restloop(){
 }
 function writebackspace(){
 	if(backspace == true){
-		//serialPort.write("b");
+		serialPort.write("b");
 	}
 }
 function timeConverter(sec) {

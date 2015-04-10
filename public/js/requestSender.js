@@ -69,7 +69,7 @@ $("#start-timer").click(function() {
 			//zet de timer op aan want de timer is nu aan
 			timerActive = true;
 			//verzend data naar socket to save on server (True event)
-			socket.emit('timerState','true');
+			socket.emit('timerState','');
 			socket.emit('countDownTime', hmsToSecondsOnly(timerTime));
 			//debug
 			console.log("Timer_ON | socketSend");
@@ -81,7 +81,7 @@ $("#start-timer").click(function() {
 		//timer state aan passen naar uit
 		timerActive = false;
 		//verzend data naar socket to save on server (False event)
-		socket.emit('timerState','false');
+		socket.emit('rest','');
 		//debug 
 		console.log("Timer_OFF | socketSend");
 	}
