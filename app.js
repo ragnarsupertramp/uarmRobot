@@ -32,6 +32,7 @@ io.on('connection', function(socket){
   	restloop();
   });
 });
+http.listen(function(){
   console.log('listening on *:80');
   console.log('Wating for user to connect');
 });
