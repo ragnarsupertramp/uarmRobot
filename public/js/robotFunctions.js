@@ -75,6 +75,8 @@ function timepress(){
             time = "";
         }
 
+        socket.emit('time', time);
+
         console.log(time);
         $("#clock").html(time);
         locked = true;
