@@ -9,6 +9,7 @@ h1{
 }
 #clock{
 	margin: auto;
+	margin-top: -150px;
 	width: 100%;
 	text-align: center;
 	color: #222;
