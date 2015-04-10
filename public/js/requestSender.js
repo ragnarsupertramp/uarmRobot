@@ -70,7 +70,7 @@ $("#start-timer").click(function() {
 			timerActive = true;
 			//verzend data naar socket to save on server (True event)
 			socket.emit('timerState','true');
-			socket.emit('countDownTime', timerTime);
+			socket.emit('countDownTime', hmsToSecondsOnly(timerTime));
 			//debug
 			console.log("Timer_ON | socketSend");
 		},1000);
@@ -86,3 +86,13 @@ $("#start-timer").click(function() {
 		console.log("Timer_OFF | socketSend");
 	}
 });
+
+function hmsToSecondsOnly(str) {
+    var p = str.split(':'),
+        s = 0, m = 1;
+    while (p.length > 0) {
+        s += m * parseInt(p.pop(), 10);
+        m *= 60;
+    }
+    return s;
+}
