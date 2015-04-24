@@ -24,7 +24,7 @@ $('#start-clock').click(function(){
 			//klok naar actief zetten
 			clockActive = true;
 			//verzend data naar socket to save on server (True event)
-			socket.emit('clockState','true');
+			socket.emit('clock','');
 			//debug
 			console.log("Clock_on | socketSend");
 		},1000);
@@ -35,7 +35,7 @@ $('#start-clock').click(function(){
 		//clock naar nonactief zetten
 		clockActive = false;
 		//verzend data naar socket to save on server (false event)
-		socket.emit('clockState','false');
+		socket.emit('clockReset','');
 		//debug
 		console.log("Clock_off | socketSend");
 	}
@@ -69,7 +69,7 @@ $("#start-timer").click(function() {
 			//zet de timer op aan want de timer is nu aan
 			timerActive = true;
 			//verzend data naar socket to save on server (True event)
-			socket.emit('timerState','');
+			socket.emit('timer','');
 			socket.emit('countDownTime', hmsToSecondsOnly(timerTime));
 			//debug
 			console.log("Timer_ON | socketSend");
@@ -81,18 +81,18 @@ $("#start-timer").click(function() {
 		//timer state aan passen naar uit
 		timerActive = false;
 		//verzend data naar socket to save on server (False event)
-		socket.emit('rest','');
+		socket.emit('timeRest','');
 		//debug 
 		console.log("Timer_OFF | socketSend");
 	}
 });
 
-function hmsToSecondsOnly(str) {
-    var p = str.split(':'),
-        s = 0, m = 1;
-    while (p.length > 0) {
-        s += m * parseInt(p.pop(), 10);
-        m *= 60;
-    }
-    return s;
-}
+// function hmsToSecondsOnly(str) {
+//     var p = str.split(':'),
+//         s = 0, m = 1;
+//     while (p.length > 0) {
+//         s += m * parseInt(p.pop(), 10);
+//         m *= 60;
+//     }
+//     return s;
+// }

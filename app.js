@@ -4,10 +4,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./scratch');
-var SerialPort = require("serialport").SerialPort
-var serialPort = new SerialPort("/dev/ttyUSB0", {
-  baudrate: 9600
-});
+//var SerialPort = require("serialport").SerialPort
+//var serialPort = new SerialPort("/dev/ttyUSB0", {
+//  baudrate: 9600
+//});
 
 app.use('/', express.static(__dirname + '/public'));
 
@@ -28,8 +28,16 @@ io.on('connection', function(socket){
   socket.on('time', function(msg){
   	getbrowserinput(msg);
   });
-  socket.on('rest', function(){
+  socket.on('timeRest', function(){
   	restloop();
+  });
+  socket.on('clock',function(){
+  	startClock();
+  	console.log("clock");
+  });
+  socket.on('clockReset',function(){
+  	resetClock();
+  	console.log("stopClock");
   });
 });
 http.listen(3000, function(){
@@ -37,11 +45,13 @@ http.listen(3000, function(){
   console.log('Wating for user to connect');
 });
 
-//setup som globel sutff
+//setup som globel sutff for timer
 var newtime = true;
 var clocktime = 600;
 var backspace = false;
 var stoploop = false;
+
+var stopClock = false;
 
 // funtion section
 function start(){
@@ -64,6 +74,20 @@ function start(){
 		}, 250);
 	}
 	
+}
+function startClock(){
+	printer(getTime());
+	stopClock = false;
+	var clocktime = setInterval(function(){
+		backspace = true;
+		printer(getTime());
+		if(stopClock = false){ 
+			writebackspace();
+		}
+	},30000);
+}
+function resetClock(){
+	stopClock = true;
 }
 function clock(){
 	//gen new time or hold old time How ?
@@ -125,7 +149,7 @@ function printer(clocktimeprinter){
 		//send loop to serial port
 		for (i = 0; i < splittime.length; i++) {
 			//wirte to serialPort
-		  	serialPort.write(splittime[i]);
+		  	//serialPort.write(splittime[i]);
 		}			
 }
 function restloop(){
@@ -137,7 +161,7 @@ function restloop(){
 }
 function writebackspace(){
 	if(backspace == true){
-		serialPort.write("b");
+		//serialPort.write("b");
 	}
 }
 function timeConverter(sec) {
@@ -155,4 +179,17 @@ function clearlocalstorge(){
 	console.log("LocalStorageset");
 	localStorage.setItem("clocktimesave" , "");
 	localStorage.setItem("browserinput" ,  "");
+}
+function getTime() {
+	var now     = new Date(); 
+	var hour    = now.getHours();
+	var minute  = now.getMinutes(); 
+	if(hour.toString().length == 1) {
+		var hour = '0'+hour;
+	}
+	if(minute.toString().length == 1) {
+		var minute = '0'+minute;
+	}
+	var dateTime = hour+":"+minute;   
+	return dateTime;
 }
