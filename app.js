@@ -47,7 +47,7 @@ http.listen(3000, function(){
 
 //setup som globel sutff for timer
 var newtime = true;
-var clocktime = 38880;
+var clocktime = 2332800;
 var backspace = false;
 var stoploop = false;
 
