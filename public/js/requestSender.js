@@ -69,7 +69,7 @@ $("#start-timer").click(function() {
 			//zet de timer op aan want de timer is nu aan
 			timerActive = true;
 			//verzend data naar socket to save on server (True event)
-			socket.emit('timer','');
+			socket.emit('timerState','');
 			socket.emit('countDownTime', hmsToSecondsOnly(timerTime));
 			//debug
 			console.log("Timer_ON | socketSend");

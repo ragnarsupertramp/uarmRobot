@@ -29,7 +29,6 @@ io.on('connection', function(socket){
   	getbrowserinput(msg);
   });
   socket.on('timeRest', function(){
-  	restloop();
   });
   socket.on('clock',function(){
   	startClock();
