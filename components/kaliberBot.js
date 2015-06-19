@@ -26,6 +26,8 @@ function kaliberBot() {
 		if (!hasStarted) {
 			hasStarted = true;
 
+			// Send backspace to robot
+			_sendSerialData( 'b' );
 			_startTimer();
 		}
 	}
@@ -77,7 +79,7 @@ function kaliberBot() {
 		if (currentTimeInSeconds > 0) {
 			currentTimeInSeconds = currentTimeInSeconds - 5;
 
-			_sendSerialData( _getTimeFromSecondsToString() );
+			_sendSerialData( _getTimeFromSecondsToString() + "b" );
 		} else {
 			stopRobot();
 		}
