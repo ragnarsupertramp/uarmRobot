@@ -1,5 +1,3 @@
-var serialPort = require("serialport");
-
 function kaliberBot() {
 
 	var hasStarted,
@@ -19,13 +17,9 @@ function kaliberBot() {
 		currentTimeInSeconds = convertedRunningTimeInSeconds;
 		hasStarted = false;
 
-		serialPort.list(function (err, ports) {
-			ports.forEach(function(port) {
-				console.log(port.comName);
-			});
-		});
-
-		_sendSerialData( _getTimeFromSecondsToString() );
+		setTimeout(function() {
+			_sendSerialData( _getTimeFromSecondsToString() );
+		}, 500);
 	}
 
 	function startRobot() {
@@ -82,7 +76,6 @@ function kaliberBot() {
 	function _updateCurrentTime() {
 		if (currentTimeInSeconds > 0) {
 			currentTimeInSeconds = currentTimeInSeconds - 5;
-			console.log((new Date()) + ' - new time: ' + _getTimeFromSecondsToString());
 
 			_sendSerialData( _getTimeFromSecondsToString() );
 		} else {
@@ -103,8 +96,6 @@ function kaliberBot() {
 	}
 
 	function _sendSerialData( data ) {
-		console.log((new Date()) + ' - send data to serial: ' + data);
-
 		var serialData = data.split("");
 
 		//send loop to serial port
