@@ -1,2 +1,9 @@
-/node_modules
-/scratch
+#Grunt generated files #
+########################
+.grunt
+dist
+
+# Node generated files #
+########################
+node_modules
+scratch

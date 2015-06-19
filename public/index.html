@@ -1,30 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>kaliberBot controll | Home</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="images/favicon.png">
+<html>
+<head lang="NL-nl">
+	<meta charset="utf-8">
+	<title>kaliberBot | Timer</title>
+	<meta property="og:site_name" content="kaliberBot">
+	<meta property="og:locale" content="nl_NL">
+	
+	<link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="one-half column" style="margin-top: 2%">
-        <h1>kaliberBot controll</h1><hr>
-        <p>kaliberBot controllBoard </p>
-        <a href="clock.html" class="button">Start the clock</a>
-        <a href="timer.html" class="button">Start the timer</a><hr>
-        <a href="full-screen.html" class="button">I'am a robot</a>
-      </div>
-    </div>
-  </div>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bodyAnimation.js"></script>
+	<div id="kaliberbot--index">
+		<main id="kaliberbot--index--clock">
+			30:00
+		</main>
+
+		<div id="kaliberbot--index--overlay"></div>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="javascripts/jquery-1.11.3.min.js"></script>
+	<script src="javascripts/mobileDetector.js"></script>
+	<script src="javascripts/robotFunctions.js"></script>
+	<script type="text/javascript">
+		var socket = io();
+
+		$( document ).ready(function() {
+			if ( mobileDetector.any() ) {
+				window.location.href = 'controller.html';
+			} else {
+				socket.emit('startTimer');
+				timepress();
+			};
+		});
+	</script>
 </body>
 </html>

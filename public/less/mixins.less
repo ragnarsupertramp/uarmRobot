@@ -1,0 +1,20 @@
+.reset() {
+	margin: 0;
+	padding: 0;
+}
+
+.clear() {
+	overflow: hidden;
+	float: none;
+	clear: both;
+}
+
+.animate( @time: .2s ) {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+
+	-webkit-transition: all @time ease-in-out;
+	-moz-transition: all @time ease-in-out;
+	-o-transition: all @time ease-in-out;
+	transition: all @time ease-in-out;
+}
