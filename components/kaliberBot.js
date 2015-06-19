@@ -1,7 +1,4 @@
-var SerialPort = require("serialport").SerialPort;
-// var serialPort = new SerialPort("/dev/ttyUSB0", {
-//  baudrate: 9600
-// });
+var serialPort = require("serialport");
 
 function kaliberBot() {
 
@@ -22,6 +19,12 @@ function kaliberBot() {
 		currentTimeInSeconds = convertedRunningTimeInSeconds;
 		hasStarted = false;
 
+		serialPort.list(function (err, ports) {
+			ports.forEach(function(port) {
+				console.log(port.comName);
+			});
+		});
+
 		_sendSerialData( _getTimeFromSecondsToString() );
 	}
 
@@ -30,7 +33,6 @@ function kaliberBot() {
 			hasStarted = true;
 
 			_startTimer();
-			// start commando naar serial
 		}
 	}
 
@@ -39,7 +41,6 @@ function kaliberBot() {
 			hasStarted = false;
 
 			_stopTimer();
-			// stop commando naar serial
 			resetRobot();
 		}
 	}
@@ -47,6 +48,8 @@ function kaliberBot() {
 	function resetRobot() {
 		// update current time back to initiated time
 		currentTimeInSeconds = convertedRunningTimeInSeconds;
+
+		_sendSerialData( _getTimeFromSecondsToString() );
 	}
 
 	function _convertTimeToSeconds( minutes ) {
@@ -107,9 +110,13 @@ function kaliberBot() {
 		//send loop to serial port
 		for (i = 0; i < serialData.length; i++) {
 			// Send to serialport
-		  	serialPort.write( serialData[i] );
-		  }				
+			try {
+				serialPort.write( serialData[i] );
+			} catch (err) {
+				console.log((new Date()) + ' - Error on serial: ' + err.message);
+			}		
 		}
+	}
 
 		this.init = initialize;
 		this.start = startRobot;

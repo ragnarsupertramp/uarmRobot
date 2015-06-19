@@ -5,8 +5,13 @@ var io = require('socket.io')(http);
 var KaliberBot = require('./components/kaliberBot');
 var kaliberBot = new KaliberBot();
 
+var SerialPort = require("serialport").SerialPort;
+serialPort = new SerialPort("/dev/ttyUSB0", {
+ baudrate: 9600
+});
+
 kaliberBot.init({
-	time: 0.5
+	time: 30
 });
 
 app.use('/', express.static(__dirname + '/public'));
