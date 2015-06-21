@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head lang="NL-nl">
-	<meta charset="utf-8">
-	<title>kaliberBot | Timer</title>
-	<meta property="og:site_name" content="kaliberBot">
-	<meta property="og:locale" content="nl_NL">
-	
-	<link rel="stylesheet" href="stylesheets/main.css">
+  <meta charset="utf-8">
+  <title>kaliberBot | Timer</title>
+  <meta property="og:site_name" content="kaliberBot">
+  <meta property="og:locale" content="nl_NL">
+  
+  <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
-	<div id="kaliberbot--index">
-		<main id="kaliberbot--index--clock">
-			30:00
-		</main>
+  <div id="kaliberbot--index">
+    <main id="kaliberbot--index--clock">
+      30:00
+    </main>
 
-		<div id="kaliberbot--index--overlay"></div>
-	</div>
+    <div id="kaliberbot--index--overlay"></div>
 
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="javascripts/jquery-1.11.3.min.js"></script>
-	<script src="javascripts/mobileDetector.js"></script>
-	<script src="javascripts/robotFunctions.js"></script>
-	<script type="text/javascript">
-		var socket = io();
+    <div id="kaliberbot--index--text"></div>
 
-		$( document ).ready(function() {
-			if ( mobileDetector.any() ) {
-				window.location.href = 'controller.html';
-			} else {
-				socket.emit('startTimer');
-				timepress();
-			};
-		});
-	</script>
+    <div id="kaliberbot--index--footer"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="javascripts/jquery-1.11.3.min.js"></script>
+  <script src="javascripts/mobileDetector.js"></script>
+  <script src="javascripts/robotFunctions.js"></script>
+  <script type="text/javascript">
+    var socket = io();
+
+    socket.on('timerEvent', function(msg) {
+      if (msg === "done") {
+        console.log("Timer done!");
+      }
+    });
+
+    $( document ).ready(function() {
+      if ( mobileDetector.any() ) {
+        window.location.href = 'controller.html';
+      } else {
+        socket.emit('startTimer');
+        timepress();
+      };
+    });
+  </script>
 </body>
 </html>

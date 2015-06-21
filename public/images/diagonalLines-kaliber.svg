@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
-    <title>diagonalLines-e6e7e7</title>
+    <title>Shape</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <path d="M11.8,0 L6.2,0 L0,6.2 L0,11.8 M12,11.8 L12,6.2 L6.2,12 L11.8,12" id="Shape" fill="#E6E7E7" sketch:type="MSShapeGroup"></path>
+        <g id="diagonalLines-kaliber" sketch:type="MSLayerGroup" fill="#343434">
+            <g id="Page-1" sketch:type="MSShapeGroup">
+                <path d="M11.8,0 L6.2,0 L0,6.2 L0,11.8 M12,11.8 L12,6.2 L6.2,12 L11.8,12" id="Shape"></path>
+            </g>
+        </g>
     </g>
 </svg>
