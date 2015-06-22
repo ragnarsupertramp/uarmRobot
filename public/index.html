@@ -14,9 +14,9 @@
       30:00
     </main>
 
-    <div id="kaliberbot--index--overlay"></div>
-
     <div id="kaliberbot--index--text"></div>
+
+    <div id="kaliberbot--index--overlay"></div>
 
     <div id="kaliberbot--index--footer"></div>
   </div>
@@ -30,7 +30,11 @@
 
     socket.on('timerEvent', function(msg) {
       if (msg === "done") {
-        console.log("Timer done!");
+        $('#kaliberbot--index--clock').fadeOut(1000);
+        $('#kaliberbot--index--text')
+          .delay(1000)
+          .fadeIn(1000)
+          .text('Iedereen mag naar boven.');
       }
     });
 
