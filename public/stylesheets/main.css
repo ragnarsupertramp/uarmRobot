@@ -74,9 +74,22 @@ body {
   transition: all 0.2s ease-in-out;
   position: absolute;
   width: 100%;
+  height: 25px;
+  bottom: 0;
+  background-image: url('../images/diagonalLines-kaliber.svg');
+  background-size: 15px;
+}
+#kaliberbot--controller--header {
+  font-family: 'open_sansbold', sans-serif;
+  font-size: 2rem;
+}
+#kaliberbot--controller--footer {
+  position: absolute;
+  width: 100%;
   height: 50px;
   bottom: 0;
   background-image: url('../images/diagonalLines-kaliber.svg');
   background-size: 15px;
+  opacity: 0.1;
 }
 /*# sourceMappingURL=main.css.map */

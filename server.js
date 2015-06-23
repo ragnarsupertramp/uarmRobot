@@ -12,7 +12,7 @@ serialPort = new SerialPort("/dev/ttyUSB0", {
 });
 
 kaliberBot.init({
-  time: 30
+  time: 1
 });
 
 app.use('/', express.static(__dirname + '/public'));
