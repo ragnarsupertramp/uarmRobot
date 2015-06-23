@@ -110,7 +110,7 @@ void armpos(int rot, int servoLeft, int servoRight ) {
   servoL.write(servoLeft + 30);
   servoR.write(servoRight - 20);
   servoRot.write(rot);
-  delay(325);
+  delay(500);
   servoR.write(servoRight);
   servoL.write(servoLeft);
   delay(225);
@@ -121,7 +121,7 @@ void armposB(int rot, int servoLeft, int servoRight ) {
   servoL.write(servoLeft + 20);
   servoR.write(servoRight - 20);
   servoRot.write(rot);
-  delay(325);
+  delay(500);
   servoL.write(servoLeft);
   servoR.write(servoRight);
   delay(225);
@@ -131,7 +131,7 @@ void armposHA(int rot, int servoLeft, int servoRight ) {
   servoL.write(servoLeft);
   servoRot.write(rot);
   delay(50);
-  servoL.write(servoLeft + 20);
+  servoL.write(servoLeft + 25);
   servoR.write(servoRight - 5);
   delay(175);
 }
@@ -140,7 +140,7 @@ void armposHB(int rot, int servoLeft, int servoRight ) {
   servoR.write(servoRight - 40);
   servoRot.write(rot);
   delay(50);
-  servoL.write(servoLeft + 20);
+  servoL.write(servoLeft + 25);
   servoR.write(servoRight - 5);
   delay(175);
 }
