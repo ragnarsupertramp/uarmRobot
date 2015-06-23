@@ -165,12 +165,12 @@ void selector(int val) {
       armposHA(78, 46, 125);
       break;
     case 5:
-      armpos(66, 40, 145);
-      armposHA(66, 40, 130);
+      armpos(65, 34, 145);
+      armposHA(65, 38, 130);
       break;
     case 6:
-      armpos(56, 32, 140);
-      armposHA(56, 38, 125);
+      armpos(54, 34, 135);
+      armposHA(54, 42, 125);
       break;
     case 7:
       armposB(45, 52, 150);
@@ -185,13 +185,13 @@ void selector(int val) {
       armposHB(75, 60, 145);
       break;
     case 0:
-      armposB(95, 60, 160);
+      armposB(95, 60, 165);
       armposHB(95, 60, 145);
       break;
     case 20:
       //dubblepunt;
-      armposB(110, 64, 150);
-      armposHB(110, 64, 135);
+      armposB(112, 64, 155);
+      armposHB(112, 64, 135);
       break;
     case 21:
       //backspace
