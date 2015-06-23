@@ -4,7 +4,8 @@ function kaliberBot() {
   runningTimeInMinutes = 10,
   convertedRunningTimeInSeconds,
   currentTimeInSeconds,
-  localTimer;
+  localTimer,
+  updateIntervalTime = 10;
 
   function initialize( args ) {
     if ( args.hasOwnProperty( "time" ) ) {
@@ -77,7 +78,7 @@ function kaliberBot() {
 
   function _updateCurrentTime() {
     if (currentTimeInSeconds > 0) {
-      currentTimeInSeconds = currentTimeInSeconds - 5;
+      currentTimeInSeconds = currentTimeInSeconds - updateIntervalTime;
 
       _sendSerialData( _getTimeFromSecondsToString() + "b" );
     } else {
@@ -90,7 +91,7 @@ function kaliberBot() {
   function _startTimer() {
     localTimer = setInterval(function() { 
       _updateCurrentTime();
-    }, 10000);
+    }, (updateIntervalTime * 1000));
     console.log((new Date()) + ' - Timer started!');
   }
 
