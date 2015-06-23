@@ -149,54 +149,54 @@ void armposHB(int rot, int servoLeft, int servoRight ) {
 void selector(int val) {
   switch (val) {
     case 1:
-      armpos(114, 56, 119);
-      armposHA(114, 55, 112);
+      armpos(114, 32, 130);
+      armposHA(114, 35, 115);
       break;
     case 2:
-      armpos(102, 56, 128);
-      armposHA(102, 56, 115);
+      armpos(103, 38, 140);
+      armposHA(103, 42, 125);
       break;
     case 3:
-      armpos(90, 60, 130);
-      armposHA(90, 60, 120);
+      armpos(92, 45, 140);
+      armposHA(92, 45, 125);
       break;
     case 4:
-      armpos(77, 60, 130);
-      armposHA(77, 60, 120);
+      armpos(78, 46, 140);
+      armposHA(78, 46, 125);
       break;
     case 5:
-      armpos(64, 57, 127);
-      armposHA(64, 57, 117);
+      armpos(66, 40, 145);
+      armposHA(66, 40, 130);
       break;
     case 6:
-      armpos(54, 53, 119);
-      armposHA(54, 53, 109);
+      armpos(56, 32, 140);
+      armposHA(56, 38, 125);
       break;
     case 7:
-      armposB(36, 65, 141);
-      armposHB(36, 65, 131);
+      armposB(45, 52, 150);
+      armposHB(45, 52, 135);
       break;
     case 8:
-      armposB(51, 70, 153);
-      armposHB(51, 70, 143);
+      armposB(58, 60, 157);
+      armposHB(58, 60, 147);
       break;
     case 9:
-      armposB(71, 68, 155);
-      armposHB(71, 68, 145);
+      armposB(75, 60, 160);
+      armposHB(75, 60, 145);
       break;
     case 0:
-      armposB(92, 68, 155);
-      armposHB(92, 68, 145);
+      armposB(95, 60, 160);
+      armposHB(95, 60, 145);
       break;
     case 20:
       //dubblepunt;
-      armposB(115, 63, 151);
-      armposHB(115, 63, 141);
+      armposB(110, 64, 150);
+      armposHB(110, 64, 135);
       break;
     case 21:
       //backspace
-      armposB(120, 63, 142);
-      armposHB(120, 63, 132);
+      armposB(125, 55, 145);
+      armposHB(125, 55, 130);
       break;
     case 100:
       //home center
