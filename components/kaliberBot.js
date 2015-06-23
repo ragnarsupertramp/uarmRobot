@@ -17,10 +17,6 @@ function kaliberBot() {
 
     currentTimeInSeconds = convertedRunningTimeInSeconds;
     hasStarted = false;
-
-    setTimeout(function() {
-      _sendSerialData( _getTimeFromSecondsToString() );
-    }, 500);
   }
 
   function startRobot() {
@@ -32,7 +28,6 @@ function kaliberBot() {
   }
 
   function stopRobot() {
-    console.log((new Date()) + ' - stopRobot()');
     if (hasStarted) {
       hasStarted = false;
 
@@ -77,10 +72,7 @@ function kaliberBot() {
   function _updateCurrentTime() {
     currentTimeInSeconds = currentTimeInSeconds - updateIntervalTime;
 
-    console.log((new Date()) + ' - _updateCurrentTime(): ' + currentTimeInSeconds);
-
-    if (currentTimeInSeconds <= 0) {
-      console.log((new Date()) + ' - _updateCurrentTime(): currentTimeInSeconds <= 0');
+    if (currentTimeInSeconds < 0) {
       stopRobot();
       // Send message to all connected browsers
       io.emit('timerEvent', 'done');        
@@ -102,7 +94,6 @@ function kaliberBot() {
   }
 
   function _sendSerialData( data ) {
-    console.log((new Date()) + ' - _sendSerialData()');
     var serialData = data.split("");
 
     //send loop to serial port
