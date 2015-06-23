@@ -2,17 +2,18 @@ var express = require('express')
 var app = express();
 var http = require('http').Server(app);
 io = require('socket.io')(http);
+config = require('./config');
 
 var KaliberBot = require('./components/kaliberBot');
 var kaliberBot = new KaliberBot();
 
 var SerialPort = require("serialport").SerialPort;
-serialPort = new SerialPort("/dev/ttyUSB0", {
-  baudrate: 9600
+serialPort = new SerialPort(config.serial.connection, {
+  baudrate: config.serial.baudrate
 });
 
 kaliberBot.init({
-  time: 1
+  time: config.countdown.defaultTime
 });
 
 app.use('/', express.static(__dirname + '/public'));
@@ -28,8 +29,24 @@ io.on('connection', function(socket) {
     kaliberBot.start();
   });
 
-  socket.on('stopTimer',function(){
+  socket.on('stopTimer', function() {
     kaliberBot.stop();
+  });
+
+  socket.on('resetTimer', function() {
+    kaliberBot.reset();
+  });
+
+  socket.on('updateTimer', function( time ) {
+    kaliberBot.updateTime(time);
+  });
+
+  socket.on('getCountdownTime', function() {
+    socket.emit('countdownTime', kaliberBot.getTime());
+  });
+
+  socket.on('getCountdownTimeInMinutes', function() {
+    socket.emit('countdownTimeInMinutes', kaliberBot.getTimeInMinutes);
   });
 
   socket.on('disconnect', function() {

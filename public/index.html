@@ -10,9 +10,7 @@
 </head>
 <body>
   <div id="kaliberbot--index">
-    <main id="kaliberbot--index--clock">
-      30:00
-    </main>
+    <main id="kaliberbot--index--clock"></main>
 
     <div id="kaliberbot--index--text"></div>
 
@@ -26,23 +24,29 @@
   <script src="javascripts/mobileDetector.js"></script>
   <script src="javascripts/robotFunctions.js"></script>
   <script type="text/javascript">
-    var socket = io();
-
-    socket.on('timerEvent', function(msg) {
-      if (msg === "done") {
-        $('#kaliberbot--index--clock').fadeOut(1000);
-        $('#kaliberbot--index--text')
-          .delay(1000)
-          .fadeIn(1000)
-          .text('Iedereen mag naar boven.');
-      }
-    });
-
     $( document ).ready(function() {
       if ( mobileDetector.any() ) {
         window.location.href = 'controller.html';
       } else {
-        socket.emit('startTimer');
+        var socket = io();
+
+        socket.emit('getCountdownTime', null);
+
+        socket.on('timerEvent', function( msg ) {
+          if (msg === 'done') {
+            $('#kaliberbot--index--clock').fadeOut(1000);
+            $('#kaliberbot--index--text')
+              .delay(1000)
+              .fadeIn(1000)
+              .text('Iedereen mag naar boven.');
+          }
+        });
+
+        socket.on('countdownTime', function( time ) {
+          $('#kaliberbot--index--clock').text( time );
+          //socket.emit('startTimer');
+        });
+
         timepress();
       };
     });

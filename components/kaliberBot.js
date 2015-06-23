@@ -1,11 +1,11 @@
 function kaliberBot() {
 
   var hasStarted,
-  runningTimeInMinutes = 10,
+  runningTimeInMinutes = config.countdown.defaultTime,
   convertedRunningTimeInSeconds,
   currentTimeInSeconds,
   localTimer,
-  updateIntervalTime = 10;
+  updateIntervalTime = config.countdown.intervalTimer;
 
   function initialize( args ) {
     if ( args.hasOwnProperty( "time" ) ) {
@@ -58,7 +58,7 @@ function kaliberBot() {
     var minutes = parseInt( currentTimeInSeconds / 60 );
     var seconds = currentTimeInSeconds % 60;
 
-    if (currentTimeInSeconds > 60) {
+    if (currentTimeInSeconds >= 60) {
       theTime += minutes < 10 ? "0" + minutes : minutes;
       theTime += ":";
       theTime += seconds < 10 ? "0" + seconds : seconds;
@@ -111,7 +111,9 @@ function kaliberBot() {
     this.start = startRobot;
     this.stop = stopRobot;
     this.reset = resetRobot;
+    this.updateTime = _convertTimeToSeconds;
     this.getTime = _getTimeFromSecondsToString;
+    this.getTimeInMinutes = runningTimeInMinutes;
   }
 
   module.exports = kaliberBot;

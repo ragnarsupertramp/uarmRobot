@@ -1,0 +1,95 @@
+#kaliberbot {
+  &--controller {
+    width: 100%;
+
+    hr {
+      width: 70%;
+      border: none;
+      color: @white;
+      background-color: @white;
+      height: 5px;
+      background-image: url('../images/diagonalLines-kaliber.svg');
+      background-size: 5px;  
+      opacity: 0.4;  
+    }
+
+    &--header {
+      font-family: 'open_sansbold', sans-serif;
+      font-size: 2rem;
+      text-align: center;
+      padding: 1rem;
+      border-bottom: 1px solid @light_grey;
+      margin-bottom: 1.5rem;
+    }
+
+    &--countdown {
+      width: 70%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    &--input-time {
+      display: inline-block;
+      border: 1px solid @light_grey;
+      -webkit-border-radius: 4;
+      -moz-border-radius: 4;
+      border-radius: 4px;
+      font-family: 'open_sansbold', sans-serif;
+      font-size: 1.5rem;
+      padding: 0.8rem 0;
+      margin: 0.8rem 0;
+      width: 45%;
+      text-align: center;
+    }
+
+    &--button-time {
+      &-minus {
+        width: 25%;
+        display: inline-block;
+        background-color: @red;
+        background-image: none;
+        margin: 0.8rem 0;
+        padding: 0.8rem 0;
+      }
+
+      &-plus {
+        width: 25%;
+        display: inline-block;
+        background-color: @green;
+        background-image: none;
+        margin: 0.8rem 0;
+        padding: 0.8rem 0;
+      }
+    }
+
+    &--footer {
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      bottom: 0;
+      background-image: url('../images/diagonalLines-kaliber.svg');
+      background-size: 10px;      
+      opacity: 0.4;
+    }
+  }
+}
+
+.kaliberbot {
+  &--controller {
+    &--button {
+      -webkit-border-radius: 4;
+      -moz-border-radius: 4;
+      border-radius: 4px;
+      text-align: center;
+      padding: 0.8rem 0.8rem;
+      width: 70%;
+      margin: 0.8rem auto;
+      background-image: url('../images/diagonalLines-kaliber.svg');
+      background-size: 10px;
+      background-color: @black;
+      color: @white;
+      font-family: 'open_sansbold', sans-serif;
+      font-size: 1.5rem;
+    }
+  }
+}

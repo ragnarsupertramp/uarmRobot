@@ -10,14 +10,70 @@
   <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
-  
+
   <div id="kaliberbot--controller">
-    <header id="kaliberbot--controller--header">kaliberBot Controller</header>
+    <header id="kaliberbot--controller--header">kaliberBot</header>
+
+    <div id="kaliberbot--controller--countdown">
+      <div class="kaliberbot--controller--input" id="kaliberbot--controller--input-time"></div>
+      <div class="kaliberbot--controller--button" id="kaliberbot--controller--button-time-plus">+</div>
+      <div class="kaliberbot--controller--button" id="kaliberbot--controller--button-time-minus">-</div>      
+    </div>
+
+    <div class="kaliberbot--controller--button" id="kaliberbot--controller--button-update">Update</div>
+
+    <hr/>
+
+    <div class="kaliberbot--controller--button" id="kaliberbot--controller--button-start">Start</div>
+
+    <div class="kaliberbot--controller--button" id="kaliberbot--controller--button-stop">Stop</div>
+
+    <div class="kaliberbot--controller--button" id="kaliberbot--controller--button-reset">Reset</div>
 
     <div id="kaliberbot--controller--footer"></div>
   </div>
   
   <script src="/socket.io/socket.io.js"></script>
   <script src="javascripts/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript">
+    var socket = io();
+    var countdownTimerMinutes;
+
+    socket.emit('getCountdownTimeInMinutes', null);
+
+    socket.on('countdownTimeInMinutes', function( time ) {
+      $('#kaliberbot--controller--input-time').text( time + ' min.');
+      countdownTimerMinutes = time;
+    });
+
+    $('.kaliberbot--controller--button').on('click', function () {
+      switch (this.id) {
+        case 'kaliberbot--controller--button-time-plus':
+        if (countdownTimerMinutes < 60) {
+          countdownTimerMinutes++;
+          $('#kaliberbot--controller--input-time').text( countdownTimerMinutes + ' min.');
+        }
+        break;
+        case 'kaliberbot--controller--button-time-minus':
+        if (countdownTimerMinutes > 1) {
+          countdownTimerMinutes--;
+          $('#kaliberbot--controller--input-time').text( countdownTimerMinutes + ' min.');
+        }
+        break;
+        case 'kaliberbot--controller--button-update':
+          socket.emit('updateTimer', countdownTimerMinutes);
+        break;
+        case 'kaliberbot--controller--button-start':
+          socket.emit('startTimer', null);
+        break;
+        case 'kaliberbot--controller--button-stop':
+          socket.emit('stopTimer', null);
+        break;
+        case 'kaliberbot--controller--button-reset':
+          socket.emit('resetTimer', null);
+        break;
+      }
+    });
+  </script>
 </body>
 </html>
