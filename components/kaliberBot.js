@@ -37,7 +37,6 @@ function kaliberBot() {
       hasStarted = false;
 
       _stopTimer();
-      resetRobot();
     }
   }
 
@@ -85,9 +84,9 @@ function kaliberBot() {
       stopRobot();
       // Send message to all connected browsers
       io.emit('timerEvent', 'done');        
+    } else {
+      _sendSerialData( 'b' + _getTimeFromSecondsToString() );
     }
-
-    _sendSerialData( 'b' + _getTimeFromSecondsToString() );
   }
 
   function _startTimer() {
