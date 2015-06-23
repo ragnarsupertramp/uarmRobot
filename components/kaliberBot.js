@@ -90,7 +90,7 @@ function kaliberBot() {
   function _startTimer() {
     localTimer = setInterval(function() { 
       _updateCurrentTime();
-    }, 5000);
+    }, 10000);
     console.log((new Date()) + ' - Timer started!');
   }
 

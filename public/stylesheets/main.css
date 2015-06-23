@@ -52,7 +52,7 @@ body {
   position: absolute;
   top: 0;
   background-image: url('../images/diagonalLines-kaliber-black.svg');
-  background-size: 15px;
+  background-size: 10px;
   height: 100%;
 }
 #kaliberbot--index--text {
@@ -77,7 +77,7 @@ body {
   height: 25px;
   bottom: 0;
   background-image: url('../images/diagonalLines-kaliber.svg');
-  background-size: 15px;
+  background-size: 10px;
 }
 #kaliberbot--controller--header {
   font-family: 'open_sansbold', sans-serif;
@@ -89,7 +89,7 @@ body {
   height: 50px;
   bottom: 0;
   background-image: url('../images/diagonalLines-kaliber.svg');
-  background-size: 15px;
+  background-size: 10px;
   opacity: 0.1;
 }
 /*# sourceMappingURL=main.css.map */
