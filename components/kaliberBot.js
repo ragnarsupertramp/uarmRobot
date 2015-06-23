@@ -75,15 +75,15 @@ function kaliberBot() {
   }
 
   function _updateCurrentTime() {
-    if (currentTimeInSeconds > 0) {
-      currentTimeInSeconds = currentTimeInSeconds - updateIntervalTime;
+    currentTimeInSeconds = currentTimeInSeconds - updateIntervalTime;
 
-      _sendSerialData( 'b' + _getTimeFromSecondsToString() );
-    } else {
+    if (currentTimeInSeconds <= 0) {
       stopRobot();
       // Send message to all connected browsers
-      io.emit('timerEvent', 'done');
+      io.emit('timerEvent', 'done');        
     }
+
+    _sendSerialData( 'b' + _getTimeFromSecondsToString() );
   }
 
   function _startTimer() {
