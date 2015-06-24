@@ -15,8 +15,17 @@ void Servoatch() {
 }
 void Serovdetach() {
   servoRot.detach();
+  delay(50);
   servoL.detach();
+  delay(50);
   servoR.detach();
+  delay(50);
+  servoRot.detach();
+  delay(50);
+  servoL.detach();
+  delay(50);
+  servoR.detach();
+  delay(50);
 }
 void setup() {
   Serial.begin(9600);
@@ -103,6 +112,16 @@ void loop() {
       selector(21);
       delay(delaytime);
     }
+    if (incomingByte == 100) {
+      //d for detaching the servo's 
+      //arduino 104
+      Serovdetach();
+    }
+    if (incomingByte == 97){
+      //a for ataching the servo
+      //arduino 97
+      Servoatch();
+    }
   }
 }
 void armpos(int rot, int servoLeft, int servoRight ) {
@@ -161,8 +180,8 @@ void selector(int val) {
       armposHA(92, 45, 125);
       break;
     case 4:
-      armpos(78, 46, 140);
-      armposHA(78, 46, 125);
+      armpos(75, 44, 140);
+      armposHA(75, 46, 125);
       break;
     case 5:
       armpos(65, 34, 145);
@@ -200,8 +219,8 @@ void selector(int val) {
       break;
     case 100:
       //home center
-      armposB(90, 89, 142);
-      armposHB(90, 89, 132);
+      armposB(90, 55, 142);
+      armposHB(90, 55, 132);
       break;
     default:
       break;
