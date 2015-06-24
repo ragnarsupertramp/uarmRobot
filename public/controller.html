@@ -74,6 +74,10 @@
         break;
       }
     });
+    $('.kaliberbot--controller--button').on('click', function () {
+      $("#"+this.id).fadeOut('fast');
+      $("#"+this.id).fadeIn('fast');
+    });
   </script>
 </body>
 </html>
