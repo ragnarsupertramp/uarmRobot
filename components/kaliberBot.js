@@ -23,6 +23,7 @@ function kaliberBot() {
     if (!hasStarted) {
       hasStarted = true;
 
+      _sendSerialData( 'a' );
       _startTimer();
     }
   }
@@ -32,6 +33,7 @@ function kaliberBot() {
       hasStarted = false;
 
       _stopTimer();
+      _sendSerialData( 'd' );
     }
   }
 
@@ -39,7 +41,9 @@ function kaliberBot() {
     // update current time back to initiated time
     currentTimeInSeconds = convertedRunningTimeInSeconds;
 
-    _sendSerialData( _getTimeFromSecondsToString() );
+    if (!hasStarted) {
+      _sendSerialData( _getTimeFromSecondsToString() );
+    }
   }
 
   function _convertTimeToSeconds( minutes ) {
@@ -107,13 +111,13 @@ function kaliberBot() {
     }
   }
 
-    this.init = initialize;
-    this.start = startRobot;
-    this.stop = stopRobot;
-    this.reset = resetRobot;
-    this.updateTime = _convertTimeToSeconds;
-    this.getTime = _getTimeFromSecondsToString;
-    this.getTimeInMinutes = runningTimeInMinutes;
-  }
+  this.init = initialize;
+  this.start = startRobot;
+  this.stop = stopRobot;
+  this.reset = resetRobot;
+  this.updateTime = _convertTimeToSeconds;
+  this.getTime = _getTimeFromSecondsToString;
+  this.getTimeInMinutes = runningTimeInMinutes;
+}
 
-  module.exports = kaliberBot;
+module.exports = kaliberBot;
