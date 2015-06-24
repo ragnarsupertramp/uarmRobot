@@ -23,7 +23,7 @@ function kaliberBot() {
     if (!hasStarted) {
       hasStarted = true;
 
-      _sendSerialData( 'a' );
+      _sendSerialData( 'a' ); // enable motors on kaliberbot
       _startTimer();
     }
   }
@@ -33,7 +33,7 @@ function kaliberBot() {
       hasStarted = false;
 
       _stopTimer();
-      _sendSerialData( 'd' );
+      _sendSerialData( 'd' ); // disable motors on kaliberbot
     }
   }
 
@@ -42,7 +42,12 @@ function kaliberBot() {
     currentTimeInSeconds = convertedRunningTimeInSeconds;
 
     if (!hasStarted) {
-      _sendSerialData( _getTimeFromSecondsToString() );
+      io.emit('timerEvent', 'reset'); 
+      setTimeout(function() {
+        _sendSerialData( 'a' );
+        _sendSerialData( 'b' + _getTimeFromSecondsToString() );
+        _sendSerialData( 'd' );
+      }, 500);
     }
   }
 

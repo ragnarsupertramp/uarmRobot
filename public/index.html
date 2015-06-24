@@ -33,18 +33,27 @@
         socket.emit('getCountdownTime', null);
 
         socket.on('timerEvent', function( msg ) {
-          if (msg === 'done') {
-            $('#kaliberbot--index--clock').fadeOut(1000);
-            $('#kaliberbot--index--text')
+          switch (msg) {
+            case 'done':
+              $('#kaliberbot--index--clock').fadeOut(1000);
+              $('#kaliberbot--index--text')
               .delay(1000)
               .fadeIn(1000)
               .text('Iedereen mag naar boven.');
+            break;
+            case 'reset':
+              if ( $('#kaliberbot--index--text').is(":visible") ) {
+                $('#kaliberbot--index--text').fadeOut(250);
+                $('#kaliberbot--index--clock')
+                .delay(250)
+                .fadeIn(250);
+              }
+            break;
           }
         });
 
         socket.on('countdownTime', function( time ) {
           $('#kaliberbot--index--clock').text( time );
-          //socket.emit('startTimer');
         });
 
         timepress();

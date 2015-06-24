@@ -74,9 +74,13 @@
         break;
       }
     });
-    $('.kaliberbot--controller--button').on('click', function () {
-      $("#"+this.id).fadeOut('fast');
-      $("#"+this.id).fadeIn('fast');
+
+    $('.kaliberbot--controller--button').on('touchstart', function () {
+      $(this).addClass( 'kaliberbot--controller--button-active' );
+    });
+
+    $('.kaliberbot--controller--button').on('touchend', function () {
+      $(this).removeClass( 'kaliberbot--controller--button-active' );
     });
   </script>
 </body>
