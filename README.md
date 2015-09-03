@@ -5,6 +5,16 @@
 - username : pi
 - password: lkleef
 
+##data to arduino 
+0 t/m 9 as a single numb
+a = atach the servo's (power On the servo's)
+d = detach the servo's (power Off the servo's)
+b = backspace key
+: = : key
+
+##wifi password
+kal!berbot
+
 ##install dependecies on pi
 - curl -sLS https://apt.adafruit.com/add | sudo bash
 - sudo apt-get install node
