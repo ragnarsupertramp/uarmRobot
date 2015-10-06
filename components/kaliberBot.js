@@ -8,7 +8,7 @@ function kaliberBot() {
   updateIntervalTime = config.countdown.intervalTimer;
 
   function initialize( args ) {
-    if ( args.hasOwnProperty( "time" ) ) {
+    if ( args.hasOwnProperty( 'time' ) ) {
       // update variable
       runningTimeInMinutes = args.time;
     }
@@ -63,17 +63,17 @@ function kaliberBot() {
   }
 
   function _getTimeFromSecondsToString() {
-    var theTime = "";
+    var theTime = '';
     var minutes = parseInt( currentTimeInSeconds / 60 );
     var seconds = currentTimeInSeconds % 60;
 
     if (currentTimeInSeconds >= 60) {
-      theTime += minutes < 10 ? "0" + minutes : minutes;
-      theTime += ":";
-      theTime += seconds < 10 ? "0" + seconds : seconds;
+      theTime += minutes < 10 ? '0' + minutes : minutes;
+      theTime += ':';
+      theTime += seconds < 10 ? '0' + seconds : seconds;
     } else {
-      theTime += "00:";
-      theTime += seconds < 10 ? "0" + seconds : seconds;
+      theTime += '00:';
+      theTime += seconds < 10 ? '0' + seconds : seconds;
     }
     return theTime;
   }
@@ -103,7 +103,7 @@ function kaliberBot() {
   }
 
   function _sendSerialData( data ) {
-    var serialData = data.split("");
+    var serialData = data.split('');
 
     //send loop to serial port
     for (i = 0; i < serialData.length; i++) {

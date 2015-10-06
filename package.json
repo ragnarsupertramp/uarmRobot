@@ -2,6 +2,10 @@
   "name": "kaliberBot",
   "description": "kaliberBot robot-arm",
   "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node start.js"
+  },
   "dependencies": {
     "express": "",
     "node": "",
